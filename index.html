@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+     
+    </head>
+
+    <body>
+        <button id="clear">New Grid</button>
+    <div id="container">
+
+
+    </div>
+
+    <script>
+    const container = document.getElementById("container");
+    const btn = document.getElementById("clear");
+
+    //contruct default 16 x 16 grid
+
+    function makeRows(rows, cols) {
+    container.style.setProperty('--grid-rows', rows);
+    container.style.setProperty('--grid-cols', cols);
+    for (c = 0; c < (rows * cols); c++) {
+        let cell = document.createElement("div");
+        
+        container.appendChild(cell).className = "grid-item";
+    };
+    };
+
+   window.onload = makeRows(16, 16); 
+    const items = document.querySelectorAll(".grid-item");
+    
+    
+    btn.addEventListener("click",function () {
+        const myNode = document.getElementById("container");
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.lastChild);
+        }
+        let newGrid = prompt("How many squares on each side?");
+        if (newGrid > 100){
+            alert("Cannot generate a grid more than 100 x 100")
+
+        } else {
+        makeRows(newGrid,newGrid);
+        const items = document.querySelectorAll(".grid-item");
+        items.forEach(item =>  item.addEventListener("mouseover", () => {item.style.backgroundColor = "black";}));
+        }
+    });
+
+    function clearButton() {
+        
+    }
+
+    items.forEach(item =>  item.addEventListener("mouseover", () => {item.style.backgroundColor = "black";}));
+
+    </script>
+
+    </body>
+    <footer>
+
+    </footer>
+</html>
